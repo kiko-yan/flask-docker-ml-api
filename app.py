@@ -15,6 +15,8 @@ Y = np.array([137, 118, 124, 124, 120, 129, 122, 142, 128, 114,
 # Stack W and X into a 2D feature array
 features = np.column_stack((W, X))
 model = LinearRegression().fit(features, Y)
+print("Intercept (α):", model.intercept_)
+print("Coefficients (τ, β):", model.coef_)
 
 @app.route("/predict")
 def predict():
