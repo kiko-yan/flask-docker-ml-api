@@ -10,3 +10,16 @@ This project implements a linear regression model to estimate the causal effect 
 
 - **`requirements.txt`**: Lists the Python dependencies (`flask`, `scikit-learn`, `numpy`) required for the project, ensuring all users can install the correct versions effortlessly.
 
+## Viewing Model Parameters (Intercept and Coefficients)
+
+The app prints the trained regression model’s parameters — including:
+
+- **Intercept (α)**: The baseline engagement score
+- **Coefficients (τ, β)**: The estimated average treatment effect and spending effect
+
+To view them:
+
+### ▶️ If running without Docker:
+
+```bash
+python3 app.py
