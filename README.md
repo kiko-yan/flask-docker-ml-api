@@ -2,24 +2,35 @@
 
 This project implements a linear regression model to estimate the causal effect of a carbon offset program on corporate stakeholder engagement scores, following the Rubin Causal Model. The model is containerized using Docker and exposed via a Flask API for easy deployment and prediction.
 
+---
+
 ## Components
 
-- **`app.py`**: This script trains a linear regression model using the provided dataset and exposes a `/predict` endpoint via Flask. The endpoint accepts treatment status (`W`) and sustainability spending (`X`) as inputs and returns the predicted engagement score (`Y`).
+- **`app.py`**  
+  Trains a linear regression model using the provided dataset and exposes a `/predict` endpoint via Flask.  
+  The endpoint accepts:
+  - `w` → binary treatment indicator (0 or 1)
+  - `x` → sustainability spending ($1,000s)  
+  and returns:
+  - predicted engagement score
+  - regression coefficients
 
-- **`Dockerfile`**: Configures a Docker container with Python 3.10, installs dependencies from `requirements.txt`, and runs the Flask app. Containerization ensures the application runs consistently across different environments, enhancing reproducibility.
+- **`Dockerfile`**  
+  Builds a Docker image that installs Python, `flask`, `numpy`, and `scikit-learn`, and runs the Flask app.  
+  By containerizing the setup, it ensures the application runs consistently across different machines and platforms, improving reproducibility and easing deployment.
+  
+- **`requirements.txt`**  
+  Lists required Python packages (`flask`, `scikit-learn`, `numpy`) for reproducibility.
 
-- **`requirements.txt`**: Lists the Python dependencies (`flask`, `scikit-learn`, `numpy`) required for the project, ensuring all users can install the correct versions effortlessly.
+---
 
-## Viewing Model Parameters (Intercept and Coefficients)
+## Running the App with Docker
 
-The app prints the trained regression model’s parameters — including:
+### 🛠 Build the Docker Image
+`docker build -t my-causal-app .`
 
-- **Intercept (α)**: The baseline engagement score
-- **Coefficients (τ, β)**: The estimated average treatment effect and spending effect
+### **🚀 Run the Container**
+`docker run -p 5002:5000 my-causal-app`
 
-To view them:
-
-### ▶️ If running without Docker:
-
-```bash
-python3 app.py
+### **🔍 Test the API**
+`curl "http://localhost:5002/predict?w=1&x=20"`
