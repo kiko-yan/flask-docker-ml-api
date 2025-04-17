@@ -24,7 +24,7 @@ This project implements a linear regression model to estimate the causal effect 
 
 ---
 
-## Running the App with Docker
+## ▶️ Running the App with Docker
 
 ### 🛠 Build the Docker Image
 `docker build -t my-causal-app .`
@@ -34,3 +34,9 @@ This project implements a linear regression model to estimate the causal effect 
 
 ### **🔍 Test the API**
 `curl "http://localhost:5002/predict?w=1&x=20"`
+
+---
+
+## ▶️ Running Without Docker (Optional)
+
+`python3 app.py`
